@@ -1,13 +1,153 @@
+"use client";
+import Image from "next/image";
+
+const villas = [
+  {
+    id: 1,
+    name: "4 Bedroom villa",
+    facilities: "Wifi provide, TV & Karaoke, Kitchen, Swimming pool",
+    beds: 4,
+    persons: 8,
+    price: "Rp 3.749.000",
+    img: "/4bedroom.png",
+  },
+  {
+    id: 2,
+    name: "Joglo house",
+    facilities: "Wifi provide, TV & Karaoke, Kitchen, Swimming pool",
+    beds: 4,
+    persons: 4,
+    price: "Rp 3.749.000",
+    img: "/joglo_vila.png",
+  },
+  {
+    id: 3,
+    name: "Kudus house",
+    facilities: "Wifi provide, TV & Karaoke, Kitchen",
+    beds: 4,
+    persons: 4,
+    price: "Rp 3.999.000",
+    img: "/kudus_house.png",
+  },
+];
+
 export default function VillaStudios() {
   return (
-    <section className="py-16 px-6 text-center bg-gray-50">
-      <h2 className="text-3xl font-bold mb-4">Our choice of Villa Studios</h2>
-      <p className="text-gray-600 mb-8">Placeholder for villa cards.</p>
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="p-6 border rounded-lg shadow">Villa Card 1</div>
-        <div className="p-6 border rounded-lg shadow">Villa Card 2</div>
-        <div className="p-6 border rounded-lg shadow">Villa Card 3</div>
+<section className="w-full bg-white py-20 px-8 lg:px-32 font-poppins relative">
+  {/* Title */}
+  <div className="flex justify-center mb-20 text-center">
+    <h2 className="text-neutral-700 text-4xl font-semibold leading-10">
+      Our choise of{" "}
+      <span className="text-teal-700">Villa Studios</span>
+    </h2>
+  </div>
+
+  {/* Decorative Vector */}
+  <Image
+    src="/GroupVektor.png"
+    alt="Decorative vector"
+    width={104}
+    height={118}
+    className="absolute left-[126px] top-[143px] opacity-80 z-0"
+  />
+
+  {/* Grid Cards */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1152px] mx-auto relative z-10">
+    {villas.map((villa) => (
+      <div
+        key={villa.id}
+        className="group w-96 h-[530px] relative rounded-md border border-neutral-100 
+                   shadow-[2px_4px_15px_rgba(0,0,0,0.08)] overflow-hidden 
+                   transition-all duration-300 bg-white text-neutral-900 
+                   hover:bg-teal-700 hover:text-white hover:shadow-[4px_4px_25px_rgba(0,0,0,0.05)]"
+      >
+        {/* Gambar */}
+        <div className="absolute top-6 left-6 right-6">
+          <Image
+            src={villa.img}
+            alt={villa.name}
+            width={320}
+            height={320}
+            className="w-80 h-80 object-cover rounded-md mx-auto"
+          />
+        </div>
+
+        {/* Nama + Info */}
+        <div className="absolute left-7 right-7 top-[362px]">
+          <h3
+            className="text-base font-medium mb-4 
+                       text-teal-700 group-hover:text-white"
+          >
+            {villa.name}
+          </h3>
+
+          {/* Grid Info */}
+          <div className="grid grid-cols-2 gap-y-2 text-xs">
+            <p className="font-medium">Main Facilities</p>
+            <p className="text-left">{villa.facilities}</p>
+
+            <p className="flex items-center gap-2 font-medium">
+              <Image
+                src="/Bed.png"
+                alt="Bed"
+                width={16}
+                height={16}
+                className="block group-hover:hidden"
+              />
+              <Image
+                src="/White Bed.png"
+                alt="White Bed"
+                width={16}
+                height={16}
+                className="hidden group-hover:block"
+              />
+              {villa.beds} Bed
+            </p>
+
+            <p className="flex items-center gap-2 font-medium">
+              <Image
+                src="/Max Capasity.png"
+                alt="Max Capacity"
+                width={16}
+                height={16}
+                className="block group-hover:hidden"
+              />
+              <Image
+                src="/White Max.png"
+                alt="White Max"
+                width={16}
+                height={16}
+                className="hidden group-hover:block"
+              />
+              {villa.persons} Persons
+            </p>
+          </div>
+        </div>
+
+        {/* Harga */}
+        <div className="absolute left-7 bottom-6">
+          <span className="text-xl font-medium text-[#106A64] group-hover:text-white">
+            {villa.price}
+          </span>
+          <span className="text-sm font-normal ml-1 group-hover:text-white">
+            /night
+          </span>
+        </div>
       </div>
-    </section>
+    ))}
+  </div>
+
+  {/* Load More Button */}
+  <div className="flex justify-center mt-14">
+    <button
+      className="px-6 py-3 rounded-lg font-medium transition-all duration-300
+                 bg-[#F3F9F8] text-[#106A64]
+                 hover:bg-[#106A64] hover:text-white"
+    >
+      Load More
+    </button>
+  </div>
+</section>
+
   );
 }

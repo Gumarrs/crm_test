@@ -31,9 +31,17 @@ export default function Hero() {
   with a stunning 180 degree bird’s eye view.
 </p>
 
-<button className="mt-6 font-button text-brandGreen bg-brandBg rounded-sm5 px-35 py-12">
+<button
+  className="
+    mt-6 font-button rounded-sm5 px-35 py-12 
+    text-brandGreen bg-brandBg 
+    transition-all duration-300
+    hover:bg-brandGreen hover:text-white
+  "
+>
   Explore Rooms
 </button>
+
 
 </div>
  {/* Booking Bar */}

@@ -159,9 +159,18 @@ export default function Navbar() {
         <Link href="#" className="text-white text-base font-normal leading-tight">
           Contact us
         </Link>
-        <button className="px-8 py-2 bg-teal-700 inline-flex justify-center items-center gap-2.5">
-          <div className="justify-start text-white text-base font-normal">Login</div>
-        </button>
+<button
+  className="
+    px-8 py-2 bg-teal-700 
+    inline-flex justify-center items-center gap-2.5
+    text-white text-base font-normal
+    transition-all duration-300 border border-teal-700
+    hover:bg-white hover:text-teal-700
+  "
+>
+  Login
+</button>
+
       </div>
     </div>
   );
