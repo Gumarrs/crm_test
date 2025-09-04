@@ -96,12 +96,12 @@ export default function Navbar() {
         {/* Tombol Villa Category di desktop */}
         {!isMobile && (
           <div className="relative">
-            <button
+                        <button
               onClick={() => {
                 setOpenSubmenu((prev) => !prev);
                 setOpenDropdown(false); // tutup dropdown kalau submenu dibuka
               }}
-              className="flex items-center gap-2 text-white text-base font-normal leading-tight"
+              className="flex items-center gap-2 text-white text-base font-normal leading-tight hover:text-teal-300 transition-colors"
             >
               Villa Category ▾
             </button>
@@ -111,7 +111,7 @@ export default function Navbar() {
                 {submenuItems.map((item, idx, arr) => (
                   <li
                     key={item}
-                    className={`px-3 py-2 hover:bg-slate-300/30 cursor-pointer ${
+                    className={`px-3 py-2 cursor-pointer transition-colors hover:bg-slate-300/30 hover:text-teal-700 ${
                       idx !== arr.length - 1 ? "border-b border-stone-300" : ""
                     }`}
                     onClick={() => {
@@ -121,6 +121,7 @@ export default function Navbar() {
                   >
                     {item}
                   </li>
+
                 ))}
               </ul>
             )}
@@ -154,24 +155,27 @@ export default function Navbar() {
         </ul>
       )}
 
-      {/* Right side */}
-      <div className="flex items-center gap-12">
-        <Link href="#" className="text-white text-base font-normal leading-tight">
-          Contact us
-        </Link>
-<button
-  className="
-    px-8 py-2 bg-teal-700 
-    inline-flex justify-center items-center gap-2.5
-    text-white text-base font-normal
-    transition-all duration-300 border border-teal-700
-    hover:bg-white hover:text-teal-700
-  "
->
-  Login
-</button>
+{/* Right side */}
+<div className="flex items-center gap-12">
+  <Link
+    href="#contact-us"
+    className="text-white text-base font-normal leading-tight hover:text-teal-300 transition-colors"
+  >
+    Contact us
+  </Link>
 
-      </div>
+  <button
+    className="
+      px-8 py-2 bg-teal-700 
+      inline-flex justify-center items-center gap-2.5
+      text-white text-base font-normal
+      transition-all duration-300 border border-teal-700
+      hover:bg-white hover:text-teal-700
+    "
+  >
+    Login
+  </button>
+</div>
     </div>
   );
 }

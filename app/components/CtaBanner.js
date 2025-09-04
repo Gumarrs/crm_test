@@ -1,21 +1,38 @@
+import Image from "next/image";
+
 export default function CtaBanner() {
   return (
-    <section
-      className="relative h-[400px] flex items-center justify-center text-white mt-12"
-      style={{
-        backgroundImage: "url('/cta-banner.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="absolute inset-0 bg-black/50"></div>
-      <div className="relative z-10 text-center">
-        <h2 className="text-3xl font-bold mb-4">
-          Make your comfort is our happiness
-        </h2>
-        <button className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-medium">
-          Book Now
-        </button>
+    <section className="relative w-full bg-white">
+      {/* Background image full */}
+      <div className="relative w-full h-[520px]">
+        <Image
+          src="/cta-banner.png"
+          alt="CTA Banner"
+          fill
+          className="object-cover"
+          priority
+        />
+
+        {/* Overlay content */}
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full max-w-[1152px] mx-auto px-4">
+            <h2 className="text-white text-4xl font-bold leading-snug mb-6">
+              Make your comfort is
+              <br />
+              our happiness
+            </h2>
+
+            {/* Tombol anchor ke booking-bar */}
+            <a
+              href="#booking-bar"
+              className="px-8 py-4 bg-gray-100 rounded-[5px] inline-flex justify-center items-center gap-2.5
+                         text-teal-700 text-xl font-normal leading-tight
+                         transition-colors duration-300 hover:bg-teal-700 hover:text-white"
+            >
+              Book now
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

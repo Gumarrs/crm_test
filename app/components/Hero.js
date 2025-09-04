@@ -2,6 +2,8 @@
 import Navbar from "./Navbar";
 import Image from "next/image";
 import BookingBar from "./BookingBar"; // ⬅️ import
+import Link from "next/link";
+
 
 export default function Hero() {
   return (
@@ -31,16 +33,18 @@ export default function Hero() {
   with a stunning 180 degree bird’s eye view.
 </p>
 
-<button
-  className="
-    mt-6 font-button rounded-sm5 px-35 py-12 
-    text-brandGreen bg-brandBg 
-    transition-all duration-300
-    hover:bg-brandGreen hover:text-white
-  "
->
-  Explore Rooms
-</button>
+    <Link
+      href="#villa-studios"
+      className="
+        mt-6 font-button rounded-sm5 px-35 py-12 
+        text-brandGreen bg-brandBg 
+        transition-all duration-300
+        hover:bg-brandGreen hover:text-white
+        inline-block
+      "
+    >
+      Explore Rooms
+    </Link>
 
 
 </div>

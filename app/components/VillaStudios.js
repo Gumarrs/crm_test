@@ -33,7 +33,7 @@ const villas = [
 
 export default function VillaStudios() {
   return (
-<section className="w-full bg-white py-20 px-8 lg:px-32 font-poppins relative">
+<section id="villa-studios" className="w-full bg-white py-20 px-8 lg:px-32 font-poppins relative">
   {/* Title */}
   <div className="flex justify-center mb-20 text-center">
     <h2 className="text-neutral-700 text-4xl font-semibold leading-10">
@@ -50,6 +50,8 @@ export default function VillaStudios() {
     height={118}
     className="absolute left-[126px] top-[143px] opacity-80 z-0"
   />
+
+  
 
   {/* Grid Cards */}
   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1152px] mx-auto relative z-10">

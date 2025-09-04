@@ -5,6 +5,7 @@ import Facilities from "./components/Facilities";
 import Testimonials from "./components/Testimonials";
 import Gallery from "./components/Gallery";
 import CtaBanner from "./components/CtaBanner";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Testimonials />
       <Gallery />
       <CtaBanner />
+      <Footer/>
     </>
   );
 }

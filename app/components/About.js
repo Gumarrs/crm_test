@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <section className="relative w-full bg-white py-20 px-8 lg:px-32 font-poppins">
+    <section id="about" className="relative w-full bg-white py-20 px-8 lg:px-32 font-poppins">
       {/* ====== Bagian Atas: Judul + Info ====== */}
     <div className="w-full max-w-[1152px] mx-auto grid lg:grid-cols-2 items-start mt-14 mb-14">
   {/* Title */}
