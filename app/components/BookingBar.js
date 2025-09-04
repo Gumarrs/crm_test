@@ -9,7 +9,6 @@ export default function BookingBar() {
   const [showModal, setShowModal] = useState(false);
   const [isAvailable, setIsAvailable] = useState(false);
 
-  // modal input
   const [activeField, setActiveField] = useState(null);
   const [tempValue, setTempValue] = useState("");
 
@@ -29,12 +28,7 @@ export default function BookingBar() {
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
 
-    if (checkInDate >= tomorrow) {
-      setIsAvailable(true);
-    } else {
-      setIsAvailable(false);
-    }
-
+    setIsAvailable(checkInDate >= tomorrow);
     setShowModal(true);
   };
 
@@ -47,14 +41,16 @@ export default function BookingBar() {
   };
 
   return (
-    <div
-      id="booking-bar"
-      className="w-[1152px] h-28 bg-white rounded-md shadow-[0_4px_15px_rgba(0,0,0,0.05)] flex items-center justify-center"
-    >
-      <div className="flex items-center gap-24">
+    <>
+      {/* ================= Desktop ================= */}
+      <div
+        id="booking-bar-desktop"
+        className="hidden md:flex w-[1152px] h-28 mx-auto bg-white rounded-md shadow-[0_4px_15px_rgba(0,0,0,0.05)] 
+                 flex-row items-center justify-between gap-24 px-6"
+      >
         {/* Room */}
         <div
-          className="flex items-center gap-2 font-poppins text-[20px] leading-[20px] tracking-[-0.012em] text-neutral-950 cursor-pointer"
+          className="flex items-center gap-2 font-poppins text-[20px] text-neutral-950 cursor-pointer"
           onClick={() => {
             setActiveField("room");
             setTempValue(room);
@@ -69,7 +65,7 @@ export default function BookingBar() {
 
         {/* Check in */}
         <div
-          className="flex items-center gap-2 font-poppins text-[20px] leading-[20px] tracking-[-0.012em] text-neutral-950 cursor-pointer"
+          className="flex items-center gap-2 font-poppins text-[20px] text-neutral-950 cursor-pointer"
           onClick={() => {
             setActiveField("checkin");
             setTempValue(checkIn);
@@ -84,7 +80,7 @@ export default function BookingBar() {
 
         {/* Check out */}
         <div
-          className="flex items-center gap-2 font-poppins text-[20px] leading-[20px] tracking-[-0.012em] text-neutral-950 cursor-pointer"
+          className="flex items-center gap-2 font-poppins text-[20px] text-neutral-950 cursor-pointer"
           onClick={() => {
             setActiveField("checkout");
             setTempValue(checkOut);
@@ -98,16 +94,74 @@ export default function BookingBar() {
         <button
           onClick={handleSubmit}
           className="flex items-center gap-[10px] 
-                    bg-[#0F6A64] text-white font-poppins text-[20px] leading-[20px] tracking-[-0.012em] 
-                    rounded-md px-6 py-3 
-                    transition-colors duration-300
+                    bg-[#0F6A64] text-white font-poppins text-[20px] 
+                    rounded-md px-6 py-3 transition-colors duration-300
                     hover:bg-white hover:text-[#0F6A64] hover:border hover:border-[#0F6A64]"
         >
           Check availability
         </button>
       </div>
 
-      {/* Modal Input */}
+      {/* ================= Mobile ================= */}
+      <div
+        id="booking-bar-mobile"
+        className="relative w-[335px] h-[133px] mx-auto bg-white shadow-[0px_0px_13px_rgba(0,0,0,0.04),0px_0px_80px_rgba(0,0,0,0.08)] 
+                   rounded-md md:hidden"
+      >
+        {/* Room */}
+        <div
+          className="absolute left-[20px] top-[8px] text-neutral-950 text-sm font-poppins cursor-pointer"
+          onClick={() => {
+            setActiveField("room");
+            setTempValue(room);
+          }}
+        >
+          {room || "Room"}
+        </div>
+
+        <div className="absolute right-[20px] top-[14px] w-3 h-3">
+          <Image src="/vector.svg" alt="Room" width={12} height={12} />
+        </div>
+
+        <div className="absolute left-[20px] top-[36px] w-[320px] h-px bg-neutral-200" />
+
+        {/* Check in */}
+        <div
+          className="absolute left-[39px] top-[53px] inline-flex items-center gap-2 text-neutral-950 text-sm font-poppins cursor-pointer"
+          onClick={() => {
+            setActiveField("checkin");
+            setTempValue(checkIn);
+          }}
+        >
+          <Image src="/Calendar.svg" alt="Check in" width={16} height={16} />
+          <span>{checkIn || "Check in"}</span>
+        </div>
+
+        <div className="absolute left-[187px] top-[49px] w-px h-7 bg-neutral-200" />
+
+        {/* Check out */}
+        <div
+          className="absolute left-[207px] top-[53px] inline-flex items-center gap-2 text-neutral-950 text-sm font-poppins cursor-pointer"
+          onClick={() => {
+            setActiveField("checkout");
+            setTempValue(checkOut);
+          }}
+        >
+          <Image src="/Calendar.svg" alt="Check out" width={16} height={16} />
+          <span>{checkOut || "Check out"}</span>
+        </div>
+
+        {/* Button */}
+        <button
+          onClick={handleSubmit}
+          className="absolute left-[20px] top-[94px] w-[320px] h-10 bg-[#0F6A64] text-white text-xs font-poppins rounded-md
+                     flex items-center justify-center gap-2"
+        >
+          Check availability
+        </button>
+      </div>
+
+      {/* ================= Modal Input ================= */}
       {activeField && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
           <div className="w-[500px] p-8 bg-white rounded-lg flex flex-col gap-6">
@@ -157,7 +211,7 @@ export default function BookingBar() {
         </div>
       )}
 
-      {/* Modal Availability */}
+      {/* ================= Modal Availability ================= */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
           <div className="w-[500px] p-8 bg-white rounded-lg flex flex-col items-center gap-6">
@@ -178,6 +232,6 @@ export default function BookingBar() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
