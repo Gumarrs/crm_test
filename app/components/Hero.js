@@ -57,7 +57,7 @@ export default function Hero() {
   {/* Mobile paragraph */}
   <div className="block md:hidden w-80 mx-auto mt-4 text-center text-white text-sm font-normal font-poppins">
     Studio villa made of bamboo, located near the top of Mount Geulis with a
-    stunning 180 degree bird's eye view.
+    stunning 180 degree bird&apos;s eye view.
   </div>
 
   {/* Desktop paragraph */}
