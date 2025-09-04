@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 export default function Navbar() {
-  const [openDropdown, setOpenDropdown] = useState(false); // hamburger dropdown
+  const [openDropdown, setOpenDropdown] = useState(false); // hamburger
   const [openSubmenu, setOpenSubmenu] = useState(false); // submenu villa
   const [isMobile, setIsMobile] = useState(false);
   const dropdownRef = useRef(null);
@@ -40,79 +40,77 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="absolute top-0 left-0 w-full h-20 font-poppins flex items-center justify-between px-[174px] z-20">
+    <div className="absolute top-0 left-0 w-full h-20 font-poppins flex items-center justify-between px-4 md:px-[174px] z-20">
       {/* Left side */}
-      <div className="flex items-center gap-16 relative" ref={dropdownRef}>
-        {/* Hamburger custom 4 garis */}
+      <div className="flex items-center gap-8 relative" ref={dropdownRef}>
+        {/* Hamburger → dari kode pertama */}
         <button
           onClick={() => {
             setOpenDropdown((prev) => !prev);
-            setOpenSubmenu(false); // tutup submenu kalau hamburger dibuka
+            setOpenSubmenu(false);
           }}
           className="flex flex-col gap-[3px] justify-center items-center w-9 h-9"
         >
-          {[...Array(4)].map((_, i) => (
+          {[...Array(3)].map((_, i) => (
             <span key={i} className="w-7 h-[2px] bg-white rounded"></span>
           ))}
         </button>
 
         {/* Dropdown dari hamburger */}
         {openDropdown && (
-          <div className="absolute left-0 top-full mt-2 w-40 bg-white rounded-md shadow-md text-black text-xs overflow-hidden z-30">
+          <div className="absolute left-0 top-full mt-2 w-44 bg-white rounded-md shadow-md text-black text-sm overflow-hidden z-30">
             <ul className="flex flex-col">
-              <li className="px-3 py-2 hover:bg-slate-300/30 cursor-pointer border-b border-stone-300/50">
+              <li className="px-3 py-2 hover:bg-slate-100 cursor-pointer border-b">
                 About
               </li>
 
-              {/* Villa Categories di dropdown */}
-              <li className="px-3 py-2 border-b border-stone-300/50 relative">
+              {/* Villa Categories di hamburger */}
+              <li className="px-3 py-2 border-b relative">
                 {isMobile ? (
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       setOpenSubmenu((prev) => !prev);
                     }}
-                    className="flex items-center gap-2 text-black text-xs font-normal leading-tight w-full"
+                    className="flex items-center justify-between w-full"
                   >
                     Villa Category ▾
                   </button>
                 ) : (
-                  <div className="flex flex-col justify-start items-start gap-2 cursor-pointer">
-                    <div className="text-black text-xs font-normal leading-none">
-                      Villa Categorys
-                    </div>
+                  <div className="flex flex-col gap-2">
+                    <div className="text-black text-sm">Villa Category</div>
                     <div className="w-24 h-px bg-stone-300/50" />
                   </div>
                 )}
               </li>
 
-              <li className="px-3 py-2 hover:bg-slate-300/30 cursor-pointer">
+              <li className="px-3 py-2 hover:bg-slate-100 cursor-pointer">
                 Gallery
               </li>
             </ul>
           </div>
         )}
 
-        {/* Tombol Villa Category di desktop */}
+        {/* Tombol Villa Category khusus desktop → submenu dari kode kedua */}
         {!isMobile && (
           <div className="relative">
-                        <button
+            <button
               onClick={() => {
                 setOpenSubmenu((prev) => !prev);
-                setOpenDropdown(false); // tutup dropdown kalau submenu dibuka
+                setOpenDropdown(false);
               }}
-              className="flex items-center gap-2 text-white text-base font-normal leading-tight hover:text-teal-300 transition-colors"
+              className="flex items-center gap-1 text-white text-base hover:text-teal-300 transition-colors"
             >
               Villa Category ▾
             </button>
 
             {openSubmenu && (
-              <ul className="absolute left-0 top-full mt-2 w-44 bg-white shadow-md text-black text-xs border border-stone-300 rounded-md z-40">
+              <ul className="absolute left-0 top-full mt-2 w-44 bg-white shadow-md text-black text-sm border rounded-md z-40">
                 {submenuItems.map((item, idx, arr) => (
                   <li
                     key={item}
-                    className={`px-3 py-2 cursor-pointer transition-colors hover:bg-slate-300/30 hover:text-teal-700 ${
-                      idx !== arr.length - 1 ? "border-b border-stone-300" : ""
+                    className={`px-3 py-2 hover:bg-slate-100 cursor-pointer ${
+                      idx !== arr.length - 1 ? "border-b" : ""
                     }`}
                     onClick={() => {
                       console.log(`Klik submenu: ${item}`);
@@ -121,27 +119,24 @@ export default function Navbar() {
                   >
                     {item}
                   </li>
-
                 ))}
               </ul>
             )}
           </div>
         )}
-
-      
       </div>
 
-      {/* Submenu mobile (fixed position) */}
+      {/* Submenu khusus mobile (fixed position) */}
       {isMobile && openSubmenu && (
         <ul
-          className="fixed bg-white shadow-md text-black text-xs border border-stone-300 rounded-md z-40"
+          className="fixed bg-white shadow-md text-black text-sm border rounded-md z-40"
           style={{ left: "161px", top: "75px", width: "180px" }}
         >
           {submenuItems.map((item, idx, arr) => (
             <li
               key={item}
-              className={`px-3 py-2 hover:bg-slate-300/30 cursor-pointer ${
-                idx !== arr.length - 1 ? "border-b border-stone-300" : ""
+              className={`px-3 py-2 hover:bg-slate-100 cursor-pointer ${
+                idx !== arr.length - 1 ? "border-b" : ""
               }`}
               onClick={() => {
                 console.log(`Klik submenu: ${item}`);
@@ -155,27 +150,19 @@ export default function Navbar() {
         </ul>
       )}
 
-{/* Right side */}
-<div className="flex items-center gap-12">
-  <Link
-    href="#contact-us"
-    className="text-white text-base font-normal leading-tight hover:text-teal-300 transition-colors"
-  >
-    Contact us
-  </Link>
+      {/* Right side (desktop) */}
+      <div className="hidden md:flex items-center gap-12">
+        <Link
+          href="#contact-us"
+          className="text-white text-base hover:text-teal-300 transition-colors"
+        >
+          Contact us
+        </Link>
 
-  <button
-    className="
-      px-8 py-2 bg-teal-700 
-      inline-flex justify-center items-center gap-2.5
-      text-white text-base font-normal
-      transition-all duration-300 border border-teal-700
-      hover:bg-white hover:text-teal-700
-    "
-  >
-    Login
-  </button>
-</div>
+        <button className="px-8 py-2 bg-teal-700 text-white border border-teal-700 hover:bg-white hover:text-teal-700 transition">
+          Login
+        </button>
+      </div>
     </div>
   );
 }
